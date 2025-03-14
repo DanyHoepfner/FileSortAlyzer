@@ -5,8 +5,8 @@ import readline from "readline";
 
 /* variables for configuration */
 /* Path to the folder where the data is */
-const dataFolder = "C:/Users/dany-/Desktop/FileSortAlyzer/Datensatz_unsortiert";
-const destinationFolder = "C:/Users/dany-/Desktop/FileSortAlyzer/Datensatz";
+const dataFolder = "C:/Users/dany-/Desktop/SpikaDaten/Datensatz_unsortiert";
+const destinationFolder = "C:/Users/dany-/Desktop/SpikaDaten/Datensatz";
 
 const lineNumber = 1;
 
