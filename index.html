@@ -7,16 +7,20 @@
     <style>
       /* VARIABLES */
       :root {
-        --navbarHeiht: 3rem;
-        --sidebarWidth: 300px;
+        --navbarHeight: 3rem;
+        --sidebarWidth: 250px;
         --navbarWidthVertical: 35vw;
-        --sizeMedium: 1vw;
+        --sizeMedium: 1rem;
+        --mainColor: #f8f5e9;
+        --sideBarColor: #9dc08b;
+        --navBarColor: #ddeb9d;
+        --footerColor: #b1f0f7;
       }
       /* OVERIDE ALL DEFAULT PADDING AND MARGIN  */
       * {
         padding: 0;
         margin: 0;
-        scrollbar-width: none;
+        box-sizing: border-box;
       }
       /* THE BODY'S DISPLAY IS SET TO GRID TO DETERMINE THE LAYOUT */
       body {
@@ -24,7 +28,7 @@
         min-height: 100vh;
         display: grid;
         grid-template-columns: var(--sidebarWidth) 1fr;
-        grid-template-rows: var(--navbarHeiht) 1fr 100vh;
+        grid-template-rows: var(--navbarHeight) 1fr auto;
         grid-template-areas:
           "navbar navbar"
           "sidebar main"
@@ -35,7 +39,7 @@
         grid-area: navbar;
         position: sticky;
         top: 0;
-        background-color: aqua;
+        background-color: var(--navBarColor);
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -63,13 +67,28 @@
       /* STYLE RULES FOR SIDEBAR */
       aside {
         grid-area: sidebar;
+        height: calc(100vh - var(--navbarHeight));
         display: flex;
-        justify-content: center;
-        background-color: beige;
-        height: 100vh;
-        overflow: scroll;
-        scrollbar-width: none;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: var(--sizeMedium);
+        background-color: var(--sideBarColor);
+        overflow-y: auto;
+        scrollbar-width: thin;
         padding: var(--sizeMedium);
+      }
+      .spika {
+        background-color: wheat;
+        width: 100%;
+        min-height: calc(
+          var(--sidebarWidth) - 2 * var(--sizeMedium) - 11px
+        ); /* the thin scrollbar is 11px width */
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
       }
       /* STYLE RULES FOR THE MAIN AREA */
       main {
@@ -77,18 +96,21 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        height: 100vh;
-        overflow: scroll;
-        scrollbar-width: none;
+        height: calc(100vh - var(--navbarHeight));
+        overflow-y: auto;
+        scrollbar-width: thin;
         padding: var(--sizeMedium);
+        background-color: var(--mainColor);
       }
       /* STYLE RULES FOR THE FOOTER */
       footer {
         grid-area: footer;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
-        background-color: blanchedalmond;
+        background-color: var(--footerColor);
+        padding: var(--sizeMedium);
       }
 
       /* HELPER CLASSES */
@@ -99,7 +121,12 @@
       /* MEDIA QUERIES */
       @media (max-width: 800px) {
         body {
-          grid-template-columns: 0 1fr;
+          grid-template-columns: 1fr;
+          grid-template-rows: var(--navbarHeight) auto auto;
+          grid-template-areas:
+            "navbar"
+            "main"
+            "footer";
         }
         .gear-icon,
         .menu-icon {
@@ -107,7 +134,7 @@
         }
         #navbar-list {
           position: fixed;
-          top: var(--navbarHeiht);
+          top: var(--navbarHeight);
           background-color: bisque;
           width: var(--navbarWidthVertical);
           left: calc(100vw - var(--navbarWidthVertical));
@@ -116,12 +143,17 @@
           flex-direction: column;
           align-items: center;
           padding: var(--sizeMedium);
+          display: none;
+          border: 1px solid black;
         }
         aside {
           position: fixed;
-          top: var(--navbarHeiht);
+          top: var(--navbarHeight);
           width: var(--sidebarWidth);
+          height: calc(100vh - var(--navbarHeight)); /* Adjusted height */
           display: none;
+          overflow-y: auto;
+          z-index: 10;
         }
       }
     </style>
@@ -145,12 +177,138 @@
         </button>
       </div>
     </nav>
-    <aside id="sidebar"></aside>
+    <aside id="sidebar">
+      <div class="spika">edhjfkhe</div>
+      <div class="spika">dfalaalw</div>
+      <div class="spika">pwpwp</div>
+      <div class="spika">edhjfkhe</div>
+      <div class="spika">dfalaalw</div>
+      <div class="spika">pwpwp</div>
+      <div class="spika">edhjfkhe</div>
+      <div class="spika">dfalaalw</div>
+      <div class="spika">pwpwp</div>
+    </aside>
     <main>
       <h1>Main content</h1>
-      <p></p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse quasi,
+        illum eius natus error culpa provident accusamus tempora optio nisi
+        quidem, laborum voluptatem, consequuntur numquam dicta voluptatum
+        similique? Dolorem ex sapiente aliquam nam, laborum perferendis a quis
+        ad! Veritatis alias aliquid dolorum, cupiditate ullam saepe commodi
+        praesentium harum perferendis quidem non aliquam necessitatibus corporis
+        cumque, rerum totam quibusdam id ad? Ipsa delectus modi asperiores
+        repellat quas, pariatur quo debitis minima dolores. Corrupti ipsum ad
+        accusamus, vero reprehenderit officia placeat nisi sapiente illo
+        doloremque adipisci suscipit totam nobis, dolor repellendus tempore sed
+        a soluta, est ab in ducimus debitis. Voluptate impedit ipsum ipsa ea!
+        Maxime fuga eos perspiciatis iusto dolore eligendi sit soluta quisquam
+        pariatur labore rem velit, quas vitae debitis nisi vero neque hic. Est
+        explicabo molestias quod officia in praesentium enim magnam, error,
+        dolores beatae odit magni doloribus quo autem velit culpa recusandae
+        nobis, vero id? Earum voluptatem tempore, quaerat, iure esse pariatur
+        aliquid asperiores mollitia vero non eveniet molestias accusamus
+        sapiente! Cumque non fuga amet mollitia saepe cupiditate numquam iure
+        quae quisquam itaque inventore quidem, reprehenderit illo nulla quia
+        nisi, dolorum debitis. Voluptates commodi, repellendus architecto
+        eveniet animi eius hic itaque voluptas obcaecati, reprehenderit ducimus
+        labore corrupti accusantium recusandae quo tenetur velit, voluptate non
+        perferendis fugiat. Assumenda quisquam excepturi obcaecati similique,
+        dolorem porro facere laborum accusantium nam eligendi vitae temporibus
+        voluptatem ratione dolore, rerum error quae molestias. Sequi autem
+        tenetur itaque ullam est assumenda, ipsam earum nostrum voluptatibus
+        qui, similique ad optio eum. Maiores ullam, officia cum velit ea commodi
+        ab voluptas nihil consectetur deserunt deleniti recusandae ipsum placeat
+        iste nulla totam maxime dolorum autem a minima! Tempore doloribus hic,
+        maiores corrupti labore minima amet libero neque voluptates vitae
+        deleniti modi laboriosam error cumque necessitatibus dolore dignissimos.
+        Quisquam molestias quas atque, rem voluptatem aspernatur sit, asperiores
+        doloremque voluptatibus eveniet, a tenetur aperiam. Nisi necessitatibus
+        accusamus nulla quidem eligendi libero cumque odit, accusantium expedita
+        doloremque excepturi reiciendis placeat ipsa omnis quo nesciunt
+        molestiae magni numquam similique laudantium odio delectus sunt
+        repellat! At neque consectetur aliquid eaque vitae consequuntur eius eum
+        blanditiis amet optio. Fugit, porro optio saepe amet aut omnis. Eum quia
+        necessitatibus deleniti exercitationem quisquam natus ut repellat.
+        Nostrum totam dolorem ab temporibus illo debitis, odio reprehenderit,
+        facilis possimus corporis, voluptate quidem hic vel enim accusantium
+        nulla. Modi, illo esse ut repellat deleniti nostrum facere perferendis
+        voluptas quaerat aut veniam, facilis voluptates dolorem ratione
+        blanditiis corrupti eveniet, dignissimos nisi. Ea doloribus expedita
+        itaque aut earum aliquam ullam sequi deleniti, vel exercitationem
+        temporibus fugit! Iure natus, aliquam labore quia dicta deleniti autem
+        neque ratione ad voluptatum quas! Vel numquam consectetur voluptatum
+        dolorem dolores, harum obcaecati? Eveniet dicta dolorem exercitationem
+        omnis ex accusantium officiis, molestiae repellendus itaque corrupti
+        veniam unde expedita cum minima facilis molestias incidunt a maxime
+        nesciunt assumenda dolores porro temporibus. Quas consequuntur hic saepe
+        vel, nisi fuga dicta ducimus assumenda reiciendis consectetur veritatis
+        aspernatur velit repudiandae maxime est eveniet doloribus, omnis dolores
+        cumque quos! Expedita totam a deserunt, laudantium culpa sequi incidunt
+        excepturi. Nobis eaque, asperiores temporibus pariatur dicta accusamus
+        eligendi adipisci culpa inventore corporis ducimus iusto minus illo
+        officia, repellat minima nesciunt voluptatibus repellendus! Culpa, quia
+        adipisci nulla illum modi dolorem corrupti, optio mollitia repudiandae
+        nostrum at. Error excepturi voluptatem eaque, vitae, numquam omnis
+        dolorum possimus, a quia officiis soluta expedita enim consectetur
+        blanditiis dolorem hic iusto optio. Omnis neque temporibus quae!
+        Molestiae optio ducimus iusto quae dolores sint a modi, harum facere
+        pariatur officia omnis asperiores aliquid, dolore provident itaque eaque
+        beatae similique laborum consequuntur voluptate. Totam, hic perspiciatis
+        laudantium culpa facilis nulla? Obcaecati, dolor delectus numquam earum
+        laborum temporibus voluptate animi optio sequi esse alias dolore fugit
+        magni nisi eligendi deleniti nihil dolores cum doloribus unde nam!
+        Accusantium rem a tenetur ullam illo sed maxime quas iure, temporibus
+        sint pariatur eaque voluptas repellendus cum iusto fugit mollitia
+        dolores, similique culpa in! Mollitia commodi modi saepe, laudantium
+        officia provident quasi distinctio voluptatibus praesentium repudiandae
+        nihil doloremque hic optio eum aliquid necessitatibus quidem voluptatem
+        consequatur perferendis harum impedit veniam, laboriosam quibusdam
+        numquam! Exercitationem nam illum eaque sequi quae reiciendis earum
+        obcaecati dolores similique possimus asperiores ipsa suscipit corrupti
+        eos sunt, consequatur quasi tempora porro nemo delectus nihil architecto
+        et? Cumque facere tenetur eum qui molestiae totam debitis nulla omnis
+        voluptates praesentium, quidem, iste magni dolorem. Molestias amet nisi
+        saepe? Eius quis natus fugiat corporis quidem quas commodi? Error est
+        excepturi consectetur obcaecati necessitatibus pariatur tempora ad quis
+        aperiam recusandae neque magni voluptates rerum voluptatibus iusto culpa
+        quia, ea dolorem sunt! Amet iusto ea officiis. Blanditiis eum laudantium
+        animi repellat aspernatur, facere ullam suscipit autem, aperiam dicta
+        rerum quisquam ad dolorum rem deserunt at voluptatibus sapiente in eaque
+        ex nisi et minima est nemo! Reprehenderit excepturi itaque autem quidem
+        illum molestias, rerum tempore eveniet reiciendis incidunt labore. Quia
+        nulla soluta quos possimus dolore, qui obcaecati illo? Ratione assumenda
+        debitis nobis! Unde beatae voluptas, doloremque vero quod nisi repellat
+        tempora sed exercitationem reprehenderit qui eligendi iure nesciunt,
+        eos, itaque dignissimos debitis vitae esse quas. Enim ad libero
+        praesentium odio culpa placeat vero fugit beatae? Saepe iusto amet, non
+        pariatur quasi aliquid odit voluptatem libero nesciunt sequi enim
+        quaerat mollitia molestias quisquam harum! Impedit laborum maxime nulla
+        molestiae vitae at, praesentium recusandae dolore consequatur animi
+        voluptatibus enim sequi pariatur, atque odio iure quae soluta veniam
+        sint ut magni numquam sit, eaque reprehenderit. Vero vel suscipit eum
+        quam nemo ullam iure adipisci expedita, deserunt natus fuga voluptate
+        incidunt quos nam illum fugit beatae laudantium dolore eaque recusandae
+        esse libero quis assumenda? Distinctio, rem? Dolor, repellendus?
+        Voluptatibus, sint fugit! Perferendis iure ad incidunt temporibus unde.
+        Quam impedit excepturi earum iusto tempora expedita soluta et voluptas
+        exercitationem necessitatibus consequatur sapiente aliquid, illum alias
+        quo molestiae sed, dolore veritatis. In placeat similique ratione quia
+        molestiae tempora nulla qui id, soluta voluptas magni ad ut dolore dolor
+        modi. Sunt repudiandae cum, quae, enim, minus mollitia dolorum molestiae
+        perferendis illo aspernatur aliquam nemo veniam! Ducimus sint
+        perferendis eos. Quos maxime, placeat provident voluptatem sapiente
+        nesciunt voluptas praesentium, officiis atque illum numquam! Tenetur
+        nihil beatae asperiores.
+      </p>
     </main>
-    <footer>Footer</footer>
+    <footer>
+      <h2>Footer</h2>
+      <ul>
+        <li>Add Colorthemes</li>
+        <li>Add all Spikadaten</li>
+      </ul>
+    </footer>
     <script>
       function toggleSidebar() {
         const sidebar = document.getElementById("sidebar");
